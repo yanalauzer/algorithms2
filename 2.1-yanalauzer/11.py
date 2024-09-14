@@ -1,4 +1,5 @@
 import time
+import unittest
 import resource
 mem = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
 start = time.time()
@@ -31,3 +32,15 @@ with open('output.txt', 'w') as file:
 end = time.time() - start
 print(end)
 print('{}'.format(mem))
+
+
+class MaxGoldWeightTest(unittest.TestCase):
+    def test_max_gold_weight(self):
+        W = 10
+        n = 3
+        weights = [1, 4, 8]
+        result = max_gold_weight(W, n, weights)
+        self.assertEqual(result, 9)
+
+if __name__ == '__main__':
+    unittest.main()

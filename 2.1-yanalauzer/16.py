@@ -1,5 +1,5 @@
 from itertools import permutations
-
+import unittest
 
 def tsp(distances):
 
@@ -34,3 +34,17 @@ min_distance, best_order = tsp(distances)
 with open("output.txt", "w") as f:
     f.write(str(min_distance) + "\n")
     f.write(" ".join([str(x) for x in best_order]))
+
+class TestDistance(unittest.TestCase):
+    def test_distance(self):
+        distances = [[0, 183, 163, 173, 181],
+                     [183, 0, 165, 172, 171],
+                     [163, 165, 0, 189, 302],
+                     [173, 172, 189, 0, 167],
+                     [181, 171, 302, 167, 0]]
+        min_distance, best_order = tsp(distances)
+        self.assertEqual(min_distance, 839)
+        self.assertEqual(best_order, (0, 2, 1, 4, 3))
+
+if __name__ == '__main__':
+    unittest.main()

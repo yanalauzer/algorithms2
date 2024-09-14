@@ -1,4 +1,5 @@
 import time
+import unittest
 import resource
 mem = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
 start = time.time()
@@ -37,3 +38,12 @@ with open("output.txt", "w") as f:
 end = time.time() - start
 print(end)
 print('{}'.format(mem))
+
+class AlmostPalindromeTest(unittest.TestCase):
+    def test_count_almost_palindromes(self):
+        expected_result = [6]
+        actual_result = count_almost_palindromes('aaa', 3)
+        self.assertEqual(actual_result, expected_result)
+
+if __name__ == '__main__':
+    unittest.main()

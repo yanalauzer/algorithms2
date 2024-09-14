@@ -1,5 +1,6 @@
 import time
 import resource
+import unittest
 mem = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
 start = time.time()
 
@@ -19,7 +20,7 @@ def fractional_knapsack(n, W, items):
             # которая поместится в сумку
             fraction = W / weight
             total_value += value * fraction
-            break
+
 
     return total_value
 
@@ -36,3 +37,12 @@ with open('output.txt', 'w') as file:
 end = time.time() - start
 print(end)
 print('{}'.format(mem))
+
+class FractionalKnapsackTest(unittest.TestCase):
+    def test_fractional_knapsack(self):
+        result = fractional_knapsack(3, 50, [(60, 20), (100, 50), (120, 30)])
+        self.assertEqual(result, 180.0000)
+
+
+if __name__ == '__main__':
+    unittest.main()

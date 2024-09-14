@@ -1,3 +1,4 @@
+import unittest
 class Node:
     def __init__(self, key):
         self.key = key
@@ -115,3 +116,5 @@ with open('input.txt', 'r') as file, open('output.txt', 'w') as output:
         elif operation == 'prev':
             result = bst.prev(key)
             output.write(str(result) + '\n' if result is not None else 'none\n')
+
+

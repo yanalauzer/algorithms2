@@ -1,3 +1,4 @@
+import unittest
 from collections import defaultdict
 
 
@@ -34,3 +35,11 @@ result = check_path_correctness(corridors, path)
 with open("output.txt", 'w') as file:
     file.write(str(result))
 
+class PathCorrectnessTest(unittest.TestCase):
+    def test_path_invalid(self):
+        corridors = [(1, 2, 10), (2, 3, 5)]
+        path = [10, 10, 10, 10, 5]
+        self.assertEqual(check_path_correctness(corridors, path), "INCORRECT")
+
+if __name__ == '__main__':
+    unittest.main()
