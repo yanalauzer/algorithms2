@@ -1,4 +1,12 @@
-def has_cycle(graph):
+import unittest
+
+def laba3(vertices, edges, graph_data):
+    graph = {}
+    for u, v in graph_data:
+        if u not in graph:
+            graph[u] = []
+        graph[u].append(v)
+
     visited = set()
     rec_stack = set()
 
@@ -20,23 +28,24 @@ def has_cycle(graph):
 
     for vertex in graph:
         if dfs(vertex):
-            return True
+            return 1
 
-    return False
+    return 0
+
+# Example usage:
+# graph_data = [(4, 4), (1,2), (3,2), (4, 3), (1,4), (1,4)]
+# result = laba3(4, 4, graph_data)
+# print(result)
 
 
-filename = "input.txt"
-graph = {}
-with open(filename, 'r') as file:
-    vertices, edges = map(int, file.readline().split())
-    for _ in range(edges):
-        u, v = map(int, file.readline().split())
-        if u not in graph:
-            graph[u] = []
-        graph[u].append(v)
 
-with open('output.txt', 'w') as file:
-  if has_cycle(graph):
-    file.write('1')
-  else:
-    file.write('0')
+class TestLaba3(unittest.TestCase):
+    def test_cycle_detection(self):
+
+        graph_data = [(4, 4), (1,2), (3,2), (4, 3), (1,4), (1,4)]
+        result = laba3(4, 4, graph_data)
+        print(result)
+        self.assertEqual(result, 1)
+
+if __name__ == '__main__':
+    unittest.main()

@@ -1,8 +1,9 @@
+import math
 import time
 import resource
 import unittest
-mem = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-start = time.time()
+# mem = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+# start = time.time()
 
 def fractional_knapsack(n, W, items):
     # Сортируем предметы по убыванию отношения стоимости к весу
@@ -24,23 +25,16 @@ def fractional_knapsack(n, W, items):
 
     return total_value
 
-# Чтение входных данных
-with open('input.txt', 'r') as file:
-    n, W = map(int, file.readline().split())
-    items = [list(map(int, line.split())) for line in file]
+def main(n,W, items):
 
-# Решение задачи и запись результата в файл вывода
-result = fractional_knapsack(n, W, items)
-with open('output.txt', 'w') as file:
-    file.write("{:.4f}".format(result))
+    result = fractional_knapsack(n, W, items)
+    print(math.ceil(result))
+    return result
 
-end = time.time() - start
-print(end)
-print('{}'.format(mem))
 
 class FractionalKnapsackTest(unittest.TestCase):
     def test_fractional_knapsack(self):
-        result = fractional_knapsack(3, 50, [(60, 20), (100, 50), (120, 30)])
+        result = main(3, 50, [(60, 20), (100, 50), (120, 30)])
         self.assertEqual(result, 180.0000)
 
 

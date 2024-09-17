@@ -21,17 +21,17 @@ def max_gold_weight(W, n, weights):
     return dp[n][W]
 
 
-with open('input.txt', 'r') as file:
-    W, n = map(int, file.readline().split())
-    weights = list(map(int, file.readline().split()))
+# with open('input.txt', 'r') as file:
+#     W, n = map(int, file.readline().split())
+#     weights = list(map(int, file.readline().split()))
+#
+# result = max_gold_weight(W, n, weights)
+# with open('output.txt', 'w') as file:
+#     file.write(str(result))
 
-result = max_gold_weight(W, n, weights)
-with open('output.txt', 'w') as file:
-    file.write(str(result))
-
-end = time.time() - start
-print(end)
-print('{}'.format(mem))
+# end = time.time() - start
+# print(end)
+# print('{}'.format(mem))
 
 
 class MaxGoldWeightTest(unittest.TestCase):
@@ -41,6 +41,7 @@ class MaxGoldWeightTest(unittest.TestCase):
         weights = [1, 4, 8]
         result = max_gold_weight(W, n, weights)
         self.assertEqual(result, 9)
+        print(result)
 
 if __name__ == '__main__':
     unittest.main()

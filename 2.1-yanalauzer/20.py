@@ -1,6 +1,7 @@
 import time
 import unittest
 import resource
+
 mem = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
 start = time.time()
 
@@ -25,25 +26,28 @@ def count_almost_palindromes(word, k):
     return count
 
 
-with open("input.txt", "r") as f:
-    n, k = map(int, f.readline().split())
-    word = f.readline().strip()
+# with open("input.txt", "r") as f:
+#     n, k = map(int, f.readline().split())
+#     word = f.readline().strip()
+#
+# count = count_almost_palindromes(word, k)
+#
+# with open("output.txt", "w") as f:
+#     f.write(str(count))
 
-count = count_almost_palindromes(word, k)
 
-with open("output.txt", "w") as f:
-    f.write(str(count))
+# end = time.time() - start
+# print(end)
+# print('{}'.format(mem))
 
-
-end = time.time() - start
-print(end)
-print('{}'.format(mem))
 
 class AlmostPalindromeTest(unittest.TestCase):
     def test_count_almost_palindromes(self):
-        expected_result = [6]
-        actual_result = count_almost_palindromes('aaa', 3)
-        self.assertEqual(actual_result, expected_result)
+        expected_result = 6
+        result = count_almost_palindromes('aaa', 3)
+        self.assertEqual(result, expected_result)
+        print(result)
+
 
 if __name__ == '__main__':
     unittest.main()

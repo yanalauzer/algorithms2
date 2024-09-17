@@ -1,10 +1,7 @@
-f = open('input.txt')
-t2 = f.readline()
-t1 = t2[:len(t2) - 1]
-p1 = f.readline()
+import unittest
 
 
-def NaiveStringMatcher(t, p):
+def laba4(t, p):
     n = len(t)
     m = len(p)
     ans = []
@@ -14,9 +11,18 @@ def NaiveStringMatcher(t, p):
     return ans
 
 
-z = open('output.txt', 'w')
-itog = NaiveStringMatcher(p1, t1)
-z.write(str(len(itog)) + '\n')
-itog.sort()
-for i in itog:
-    z.write(str(i) + ' ')
+class TestLaba4(unittest.TestCase):
+    def test_laba4(self):
+        t = "abaCaba"
+        p = "aba"
+        result = laba4(t, p)
+        result.sort()
+        self.assertEqual(result, [1, 5])
+        self.assertEqual(len(result), 2)
+        print(len(result))
+        print(result)
+
+
+
+if __name__ == '__main__':
+    unittest.main()

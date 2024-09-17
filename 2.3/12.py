@@ -1,10 +1,12 @@
 import unittest
-from collections import defaultdict
 
-
-def check_path_correctness( corridors, path):
-    graph = defaultdict(list)
+def laba3(n, m, corridors, path_length, path):
+    graph = {}
     for u, v, c in corridors:
+        if u not in graph:
+            graph[u] = []
+        if v not in graph:
+            graph[v] = []
         graph[u].append((v, c))
         graph[v].append((u, c))
 
@@ -23,23 +25,16 @@ def check_path_correctness( corridors, path):
         current_room = next_room
     return current_room
 
-
-with open("input.txt", 'r') as file:
-    n, m = map(int, file.readline().split())
-    corridors = [tuple(map(int, file.readline().split())) for _ in range(m)]
-    path_length = int(file.readline())
-    path = list(map(int, file.readline().split()))
-
-result = check_path_correctness(corridors, path)
-
-with open("output.txt", 'w') as file:
-    file.write(str(result))
-
 class PathCorrectnessTest(unittest.TestCase):
     def test_path_invalid(self):
-        corridors = [(1, 2, 10), (2, 3, 5)]
+        n = 3
+        m = 2
+        corridors = [(1, 2, 10), (1, 3, 5)]
+        path_length = 5
         path = [10, 10, 10, 10, 5]
-        self.assertEqual(check_path_correctness(corridors, path), "INCORRECT")
+        result = laba3(n, m, corridors, path_length, path)
+        print(f"Result: {result}")
+        self.assertEqual(result, 3)
 
 if __name__ == '__main__':
     unittest.main()
